@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 14% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 13% 13%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 13% 13%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 196 75% 49%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 345 33% 33%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 223 13% 20%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 196 75% 49%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 223 13% 20%;
+    --input: 223 13% 20%;
+    --ring: 196 75% 49%;
+    
+    /* Herotia Logo Colors */
+    --herotia-orange: 28 100% 55%;
+    --herotia-red: 8 64% 48%;
+    --herotia-dark-red: 8 64% 38%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground relative min-h-screen;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)];
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-indigo-500 to-secondary bg-clip-text text-transparent;
+  }
+
+  .animate-glow {
+    @apply hover:shadow-[0_0_15px_0_rgba(30,174,219,0.7)] transition-shadow duration-300;
+  }
+
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary via-indigo-500 to-secondary hover:shadow-[0_0_15px_0_rgba(30,174,219,0.7)] transition-all duration-300;
+  }
+
+  .animate-floating-colors {
+    @apply transition-colors duration-3000 animate-pulse-rainbow;
+  }
+
+  .btn-floating-gradient {
+    @apply bg-gradient-to-r from-primary via-indigo-500 to-secondary hover:shadow-[0_0_15px_0_rgba(30,174,219,0.7)] 
+           hover:from-secondary hover:via-indigo-500 hover:to-primary transition-all duration-3000;
+  }
+
+  .text-floating-gradient {
+    @apply bg-gradient-to-r from-primary via-indigo-500 to-secondary bg-clip-text text-transparent
+           hover:from-secondary hover:via-indigo-500 hover:to-primary transition-all duration-3000;
+  }
+  
+  /* Herotia specific styles */
+  .herotia-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      to right,
+      hsl(28, 100%, 55%),  /* Orange */
+      hsl(18, 85%, 55%),   /* Transitional orange-red */
+      hsl(8, 64%, 48%),    /* Red */
+      hsl(8, 64%, 58%),    /* Lighter red */
+      hsl(190, 70%, 55%),  /* Transitional blue */
+      hsl(196, 75%, 49%),  /* Blue */
+      hsl(220, 70%, 65%),  /* Transitional blue-purple */
+      hsl(277, 75%, 84%)   /* Purple */
+    );
+    background-size: 500% 100%;
+    animation: herotia-text-float 10s ease-in-out infinite;
+  }
+  
+  .btn-rgb-float {
+    background-image: linear-gradient(
+      to right,
+      hsl(28, 100%, 55%),  /* Orange */
+      hsl(18, 85%, 55%),   /* Transitional orange-red */
+      hsl(8, 64%, 48%),    /* Red */
+      hsl(8, 64%, 58%),    /* Lighter red */
+      hsl(190, 70%, 55%),  /* Transitional blue */
+      hsl(196, 75%, 49%),  /* Blue */
+      hsl(220, 70%, 65%),  /* Transitional blue-purple */
+      hsl(277, 75%, 84%)   /* Purple */
+    );
+    background-size: 500% 100%;
+    @apply text-white;
+    animation: herotia-button-float 10s ease-in-out infinite;
+  }
+  
+  .btn-rgb-float-outline {
+    animation: herotia-border-float 10s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-rainbow {
+  0%, 100% {
+    @apply from-primary via-indigo-500 to-secondary;
+  }
+  33% {
+    @apply from-secondary via-primary to-indigo-500;
+  }
+  66% {
+    @apply from-indigo-500 via-secondary to-primary;
+  }
+}
+
+@keyframes herotia-text-float {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes herotia-button-float {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes herotia-border-float {
+  0% {
+    border-color: hsl(28, 100%, 55%); /* Orange */
+  }
+  20% {
+    border-color: hsl(18, 85%, 55%);  /* Transitional orange-red */
+  }
+  40% {
+    border-color: hsl(8, 64%, 48%);   /* Red */
+  }
+  60% {
+    border-color: hsl(190, 70%, 55%); /* Transitional blue */
+  }
+  80% {
+    border-color: hsl(196, 75%, 49%); /* Blue */
+  }
+  100% {
+    border-color: hsl(277, 75%, 84%); /* Purple */
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+#tsparticles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Add new float animation */
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
